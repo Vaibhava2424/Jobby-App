@@ -1,0 +1,140 @@
+
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .product-item {
+    width: 300px;
+  }
+}
+
+.link-item {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.thumbnail {
+  width: 100%;
+  max-height: 350px;
+  border-radius: 6px;
+}
+
+.title {
+  color: #171f46;
+  font-family: 'Roboto';
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.brand {
+  color: #594d6d;
+  font-family: 'Roboto';
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+
+
+.price {
+  color: #171f46;
+  font-family: 'Roboto';
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0px;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  background-color: #6d1d9c;
+  border-radius: 6px;
+  padding: 6px 16px;
+}
+
+.rating {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-weight: 500;
+  margin-right: 4px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.star {
+  height: 20px;
+  width: 20px;
+  margin-bottom: 3px;
+}
+
+.job-card {
+  background: #232323;
+  color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 18px;
+  list-style: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  width: 320px;
+  min-height: 220px;
+  box-sizing: border-box;
+  margin:20px;
+  width:60%;
+}
+
+.job-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.job-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-right: 14px;
+}
+
+.job-title {
+  font-size: 20px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.job-rating {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.star {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.job-description {
+  margin: 14px 0;
+  font-size: 15px;
+  color: #cfcfcf;
+}
+
+.job-details {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  color: #b0b0b0;
+}
+
+.job-location,
+.job-type,
+.job-package {
+  background: #333;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+

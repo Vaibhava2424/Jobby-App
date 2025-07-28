@@ -10,7 +10,7 @@ import './App.css'
 
 function App() {
   return (
-    <BrowserRouter basename="/Jobby-App">
+    <BrowserRouter basename="/">
       <Routes>
         <Route 
           path="/login" 

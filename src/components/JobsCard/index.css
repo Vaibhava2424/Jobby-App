@@ -173,9 +173,17 @@
     min-height: auto;
   }
 }
+.view-more-text {
+  color: #007bff;
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+  text-align: center;
+  margin-top: 16px;
+  text-decoration: none; /* Default: no underline */
+}
 
-
-
-
-
-
+.view-more-text:hover {
+  text-decoration: underline; /* Underline only on hover */
+  color: #0056b3; /* Optional: slightly darker color */
+}

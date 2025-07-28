@@ -37,6 +37,8 @@ const JobsCard = ({ jobsData }) => {
             <span className="job-type">{employmentType}</span>
             <span className="job-package">{packagePerAnnum}</span>
           </div>
+          <button className="view-more-text">Click to view more</button>
+
         </li>
       </Link>
     </div>

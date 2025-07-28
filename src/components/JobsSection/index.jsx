@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import BeatLoader from 'react-spinners/BeatLoader'
 import JobsCard from '../JobsCard'
 import './index.css'
+import { Link } from 'react-router-dom'
 
 const JobsSection = () => {
   const [jobsList, setJobsList] = useState([])
@@ -65,11 +66,7 @@ const JobsSection = () => {
     <div className="jobs-section-main">
       <div className="sidebar-column">
         <div className="profile-sidebar">
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/male-avatar-img.png"
-            alt="profile"
-            className="profile-image"
-          />
+          <div className="profile-avatar">{firstLetter}</div>
           <h2 className="profile-name">{username}</h2>
           <p className="profile-bio">Lead Software Developer and AI-ML expert</p>
         </div>
@@ -189,7 +186,9 @@ const JobsSection = () => {
     </div>
     <ul className="products-list">
       {filteredJobs.map(job => (
-        <JobsCard jobsData={job} key={job.id} />
+        <Link to={`/jobs/${job.id}`} className="job-link" style={{ textDecoration: 'none', color: 'inherit' }} key={job.id}>
+          <JobsCard jobsData={job} />
+        </Link>
       ))}
     </ul>
   </div>
@@ -201,7 +200,8 @@ const JobsSection = () => {
     </div>
   )
 
-const username = localStorage.getItem('loggedInUser') || 'User'
+const username = (localStorage.getItem('loggedInUser') || 'User').trim()
+const firstLetter = username.length > 0 ? username[0].toUpperCase() : 'U'
   return (
     <>
       <div className="search-bar-wrapper">

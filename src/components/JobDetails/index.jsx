@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import Header from '../Header'
 import Cookies from 'js-cookie'
 import './index.css'
-import { DNA } from 'react-loader-spinner'
 
 const JobDetails = () => {
   const { id } = useParams()
@@ -29,9 +28,7 @@ const JobDetails = () => {
 
   if (isLoading) {
     return (
-      <div className="loader-container">
-        <DNA />
-      </div>
+      <div className="job-details-loader">Loading...</div>
     )
   }
 

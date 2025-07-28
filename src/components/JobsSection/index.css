@@ -276,7 +276,7 @@
 
   .search-input {
     width: 100%;
-    padding: 10px 16px 10px 10px; /* Leave space for icon on the right */
+    padding: 10px 16px 10px 20px; /* Leave space for icon on the right */
     margin-left:5px;
     border: 1px solid #ccc;
     border-radius: 6px;

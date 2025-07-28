@@ -184,6 +184,22 @@ const JobsSection = () => {
   </div>
       </div>
     </div>
+
+  <div className="search-bar-wrapper mobile-only">
+  <input
+    type="text"
+    placeholder="Search jobs by title"
+    value={searchInput}
+    onChange={e => setSearchInput(e.target.value)}
+    className="search-input"
+  />
+  <span className="search-icon">
+    <svg width="18" height="18" fill="#888" viewBox="0 0 24 24">
+      <path d="M21.53 20.47l-4.8-4.8A7.92 7.92 0 0018 10a8 8 0 10-8 8 7.92 7.92 0 005.67-2.27l4.8 4.8a1 1 0 001.41-1.41zM4 10a6 6 0 1112 0 6 6 0 01-12 0z"/>
+    </svg>
+  </span>
+</div>
+
     <ul className="products-list">
       {filteredJobs.map(job => (
         <Link to={`/jobs/${job.id}`} className="job-link" style={{ textDecoration: 'none', color: 'inherit' }} key={job.id}>
@@ -204,21 +220,21 @@ const username = (localStorage.getItem('loggedInUser') || 'User').trim()
 const firstLetter = username.length > 0 ? username[0].toUpperCase() : 'U'
   return (
     <>
-      <div className="search-bar-wrapper">
-        <input
-          type="text"
-          placeholder="Search jobs by title"
-          value={searchInput}
-          onChange={e => setSearchInput(e.target.value)}
-          className="search-input"
-        />
-        <span className="search-icon">
-          {/* You can use an SVG or an image */}
-          <svg width="18" height="18" fill="#888" viewBox="0 0 24 24">
-            <path d="M21.53 20.47l-4.8-4.8A7.92 7.92 0 0018 10a8 8 0 10-8 8 7.92 7.92 0 005.67-2.27l4.8 4.8a1 1 0 001.41-1.41zM4 10a6 6 0 1112 0 6 6 0 01-12 0z"/>
-          </svg>
-        </span>
-      </div>
+      <div className="search-bar-wrapper desktop-only">
+  <input
+    type="text"
+    placeholder="Search jobs by title"
+    value={searchInput}
+    onChange={e => setSearchInput(e.target.value)}
+    className="search-input"
+  />
+  <span className="search-icon">
+    <svg width="18" height="18" fill="#888" viewBox="0 0 24 24">
+      <path d="M21.53 20.47l-4.8-4.8A7.92 7.92 0 0018 10a8 8 0 10-8 8 7.92 7.92 0 005.67-2.27l4.8 4.8a1 1 0 001.41-1.41zM4 10a6 6 0 1112 0 6 6 0 01-12 0z"/>
+    </svg>
+  </span>
+</div>
+
       
       {isLoading ? renderLoader() : renderJobsList()}
     </>

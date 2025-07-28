@@ -3,9 +3,9 @@
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
-  width:100vw;
-
+  width: 100vw;
 }
+
 .home-container {
   display: flex;
   flex-direction: column;
@@ -17,6 +17,7 @@
   width: 90%;
   max-width: 1110px;
 }
+
 .home-content-container {
   display: flex;
   align-items: center;
@@ -26,7 +27,14 @@
   .home-container {
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 150px; /* <-- This is causing the gap */
+    margin-top: 150px;
+  }
+}
+
+/* ✅ Add margin-top for small screens */
+@media screen and (max-width: 767px) {
+  .home-container {
+    margin-top: 60px;
   }
 }
 
@@ -114,5 +122,38 @@
   .shop-now-button {
     width: 150px;
     font-size: 16px;
+  }
+}
+
+.find-jobs-button {
+  background-color: #5a5aef;
+  color: #ffffff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.find-jobs-button:hover {
+  background-color: #4a4add;
+  transform: scale(1.05);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 480px) {
+  .find-jobs-button {
+    width: auto;
+    padding: 10px 30px;
+    font-size: 15px;
   }
 }

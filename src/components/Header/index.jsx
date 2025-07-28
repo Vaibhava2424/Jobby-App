@@ -1,37 +1,48 @@
+import {useState} from 'react'
 import Cookies from 'js-cookie'
-import { Link, useNavigate } from 'react-router-dom'
-import Jobs from '../Jobs'
+import {Link, useNavigate, useLocation} from 'react-router-dom'
 import './index.css'
 
 const Header = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const navigate = useNavigate()
+  const location = useLocation()
+
+  const toggleMenu = () => {
+    setIsMobileMenuOpen(prev => !prev)
+  }
 
   const onLogout = () => {
-    Cookies.remove('jwt_token') // Remove the token
-    navigate('/login', { replace: true }) // Redirect to login
+    Cookies.remove('jwt_token')
+    navigate('/login', {replace: true})
   }
+
+  const isActive = path => location.pathname === path
 
   return (
     <nav className="nav-header">
       <div className="nav-content">
+        {/* Mobile View */}
         <div className="nav-bar-mobile-logo-container">
           <Link to="/">
             <img
               className="website-logo"
-              src="https://s3.ap-south-1.amazonaws.com/new-assets.ccbp.in/frontend/loading-data/niat_react_js/niat_coding_questions/nxt-trendz-logo.png"
+              src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
               alt="website logo"
             />
           </Link>
 
-          <button type="button" className="nav-mobile-btn" onClick={onLogout}>
-            <img
-              src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-log-out-img.png"
-              alt="nav logout"
-              className="nav-bar-img"
-            />
-          </button>
+          <div className="mobile-icons">
+            <button className="hamburger-icon" onClick={toggleMenu}>
+              ☰
+            </button>
+            <button type="button" className="nav-mobile-btn" onClick={onLogout}>
+              Logout
+            </button>
+          </div>
         </div>
 
+        {/* Desktop View */}
         <div className="nav-bar-large-container">
           <Link to="/">
             <img
@@ -42,12 +53,18 @@ const Header = () => {
           </Link>
           <ul className="nav-menu">
             <li className="nav-menu-item">
-              <Link to="/" className="nav-link">
+              <Link
+                to="/"
+                className={`nav-link ${isActive('/') ? 'active-link' : ''}`}
+              >
                 Home
               </Link>
             </li>
             <li className="nav-menu-item">
-              <Link to="/jobs" className="nav-link">
+              <Link
+                to="/jobs"
+                className={`nav-link ${isActive('/jobs') ? 'active-link' : ''}`}
+              >
                 Jobs
               </Link>
             </li>
@@ -57,38 +74,35 @@ const Header = () => {
           </button>
         </div>
       </div>
-      <div className="nav-menu-mobile">
-        <ul className="nav-menu-list-mobile">
-          <li className="nav-menu-item-mobile">
-            <Link to="/" className="nav-link">
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-home-icon.png"
-                alt="nav home"
-                className="nav-bar-img"
-              />
-            </Link>
-          </li>
 
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <ul className="mobile-menu">
           <li className="nav-menu-item-mobile">
-            <Link to="/products" className="nav-link">
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-products-icon.png"
-                alt="nav products"
-                className="nav-bar-img"
-              />
+            <Link
+              to="/"
+              className={`nav-link ${isActive('/') ? 'active-link' : ''}`}
+              onClick={toggleMenu}
+            >
+              Home
             </Link>
           </li>
           <li className="nav-menu-item-mobile">
-            <Link to="/cart" className="nav-link">
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-cart-icon.png"
-                alt="nav cart"
-                className="nav-bar-img"
-              />
+            <Link
+              to="/jobs"
+              className={`nav-link ${isActive('/jobs') ? 'active-link' : ''}`}
+              onClick={toggleMenu}
+            >
+              Jobs
             </Link>
+          </li>
+          <li className="logout-mobile-wrapper">
+            <button className="logout-mobile" onClick={onLogout}>
+              Logout
+            </button>
           </li>
         </ul>
-      </div>
+      )}
     </nav>
   )
 }

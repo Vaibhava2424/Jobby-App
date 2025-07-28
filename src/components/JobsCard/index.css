@@ -68,20 +68,7 @@
   margin-bottom: 3px;
 }
 
-.job-card {
-  background: #232323;
-  color: #fff;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 18px;
-  list-style: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  width: 320px;
-  min-height: 220px;
-  box-sizing: border-box;
-  margin:20px;
-  width:60%;
-}
+
 
 .job-card-header {
   display: flex;
@@ -120,6 +107,7 @@
 .job-description {
   margin: 14px 0;
   font-size: 15px;
+  padding:5px;
   color: #cfcfcf;
 }
 
@@ -137,4 +125,57 @@
   padding: 4px 10px;
   border-radius: 4px;
 }
+
+.products-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  margin-left:20px;
+}
+.job-card {
+  background: #232323;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  list-style: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  min-height: 220px;
+  box-sizing: border-box;
+  width: 60%;
+  margin: 10px auto; /* centers the card */
+}
+.job-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Optional initial style */
+  box-shadow: 0 0 0 transparent;
+}
+
+.job-card:hover {
+  transform: translateY(-5px); /* slight lift */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* subtle shadow */
+  cursor: pointer;
+}
+
+/* Medium screens: tablets and small desktops */
+@media screen and (max-width: 1024px) {
+  .job-card {
+    width: 80%;
+  }
+}
+
+/* Small screens: mobile devices */
+@media screen and (max-width: 600px) {
+  .job-card {
+    width: 95%;
+    padding: 10px;
+    min-height: auto;
+  }
+}
+
+
+
+
+
 

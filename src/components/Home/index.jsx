@@ -19,9 +19,9 @@ const Home = () => {
             <br/> and potential
           </p>
           <Link to="/jobs">
-            <button type="button" className="shop-now-button">
-              Find Jobs
-            </button>
+            <div className="button-container">
+              <button className="find-jobs-button">Find Jobs</button>
+            </div>
           </Link>
         </div>
 

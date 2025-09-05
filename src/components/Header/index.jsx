@@ -8,15 +8,11 @@ const Header = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const toggleMenu = () => {
-    setIsMobileMenuOpen(prev => !prev)
-  }
-
+  const toggleMenu = () => setIsMobileMenuOpen(prev => !prev)
   const onLogout = () => {
     Cookies.remove('jwt_token')
     navigate('/login', {replace: true})
   }
-
   const isActive = path => location.pathname === path
 
   return (
@@ -68,6 +64,14 @@ const Header = () => {
                 Jobs
               </Link>
             </li>
+            <li className="nav-menu-item">
+              <Link
+                to="/feedback"
+                className={`nav-link ${isActive('/feedback') ? 'active-link' : ''}`}
+              >
+                Feedback
+              </Link>
+            </li>
           </ul>
           <button className="logout-desktop-btn" onClick={onLogout}>
             Logout
@@ -94,6 +98,15 @@ const Header = () => {
               onClick={toggleMenu}
             >
               Jobs
+            </Link>
+          </li>
+          <li className="nav-menu-item-mobile">
+            <Link
+              to="/feedback"
+              className={`nav-link ${isActive('/feedback') ? 'active-link' : ''}`}
+              onClick={toggleMenu}
+            >
+              Feedback
             </Link>
           </li>
           <li className="logout-mobile-wrapper">

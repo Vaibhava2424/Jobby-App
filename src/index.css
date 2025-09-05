@@ -1,3 +1,4 @@
+/* ===================== GLOBAL STYLES ===================== */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -5,7 +6,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #23272f;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,10 +25,9 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #23272f;
 }
 
 h1 {
@@ -64,5 +64,128 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+body, html {
+  overflow-x: hidden;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+/* ===================== FEEDBACK PAGE ===================== */
+.feedback-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 40px 20px;
+  background-color: #23272f;
+  min-height: 80vh;
+  flex-wrap: wrap;
+  color: #fff;
+}
+
+/* Profile card */
+.feedback-card {
+  background-color: #181b22;
+  border-radius: 16px;
+  padding: 30px 20px;
+  max-width: 300px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+}
+
+.feedback-profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+/* Feedback form */
+.feedback-form-container {
+  background-color: #181b22;
+  border-radius: 16px;
+  padding: 30px 20px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+}
+
+.feedback-form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.feedback-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: #23272f;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.feedback-form textarea {
+  min-height: 120px;
+  resize: vertical; /* only allow vertical resizing */
+}
+
+
+.feedback-form input::placeholder,
+.feedback-form textarea::placeholder {
+  color: #aaa;
+}
+
+.feedback-submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #4f8cff;
+  color: #fff;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.feedback-submit-btn:hover {
+  background-color: #3a6edb;
+}
+
+.success-msg {
+  text-align: center;
+  color: #4BB543;
+  margin-bottom: 16px;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+  .feedback-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feedback-card,
+  .feedback-form-container {
+    max-width: 90%;
   }
 }

@@ -157,3 +157,74 @@
     font-size: 15px;
   }
 }
+
+/* Container for all company cards */
+.companies-section {
+  margin-top: 40px;       /* space between button and cards */
+  padding-bottom: 60px;   /* space between cards and footer */
+}
+
+/* Grid for cards */
+.companies-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row on large screens */
+  gap: 20px;
+  justify-items: center;   /* center cards in each column */
+}
+
+/* Individual card styling */
+.company-card {
+  background: #181b22;
+  border-radius: 16px;
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.company-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
+}
+
+/* Logo inside card */
+.company-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fff;
+  padding: 6px;
+}
+
+/* Company name */
+.company-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  word-wrap: break-word;
+}
+
+/* Medium screens: 2 cards per row */
+@media (max-width: 992px) {
+  .companies-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Small screens: 1 card per row */
+@media (max-width: 576px) {
+  .companies-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.companies-heading{
+  font-size:44px;
+  padding:20px;
+}

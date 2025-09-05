@@ -6,6 +6,8 @@ import Home from './components/Home'
 import NotFound from './components/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
 import JobDetails from './components/JobDetails'
+import Footer from './components/Footer'
+import Feedback from './components/Feedback'
 
 import './App.css'
 
@@ -15,7 +17,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignUpForm />} />   {/* 👈 signup route */}
-        
+        <Route path="/footer" element={<Footer />} />
+        <Route path="/feedback" element={<Feedback />} />   {/* 👈 feedback route */}
         <Route
           path="/"
           element={

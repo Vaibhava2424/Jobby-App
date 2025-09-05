@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './index.css';
+import Header from '../Header';
+import Footer from '../Footer';
 
 const Feedback = () => {
   const [feedback, setFeedback] = useState('');
@@ -15,6 +17,8 @@ const Feedback = () => {
   };
 
   return (
+    <>
+    <Header />
     <div className="feedback-container">
       {/* Profile Card */}
       <div className="feedback-card">
@@ -46,6 +50,8 @@ const Feedback = () => {
         </form>
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

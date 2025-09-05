@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import './index.css'
+  import { Link } from 'react-router-dom'
+  import './index.css'
 
 const JobsCard = ({ jobsData }) => {
   const {
@@ -14,9 +14,9 @@ const JobsCard = ({ jobsData }) => {
   } = jobsData
 
   return (
-    <div className="job-card-wrapper">
+    <li className="job-card-wrapper">
       <Link to={`/jobs/${id}`} className="job-link">
-        <li className="job-card">
+        <div className="job-card">
           <div className="job-card-header">
             <img src={companyLogoUrl} alt="company logo" className="job-logo" />
             <div>
@@ -31,17 +31,19 @@ const JobsCard = ({ jobsData }) => {
               </div>
             </div>
           </div>
+
           <p className="job-description">{description}</p>
+
           <div className="job-details">
             <span className="job-location">{location}</span>
             <span className="job-type">{employmentType}</span>
             <span className="job-package">{packagePerAnnum}</span>
           </div>
-          <button className="view-more-text">Click to view more</button>
 
-        </li>
+          <button className="view-more-text">Click to view more</button>
+        </div>
       </Link>
-    </div>
+    </li>
   )
 }
 

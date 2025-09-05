@@ -318,5 +318,27 @@ hr,
   height: 80px;
 }
 
+.job-details-loader{
+  text-align:center;
+}
+
+.job-details-loader {
+  font-size: 20px;
+  animation: blink 1s infinite;
+  
+  /* Centering */
+  display: flex;
+  justify-content: center; /* Horizontal */
+  align-items: center;     /* Vertical */
+  height: 100vh;           /* Full screen height */
+}
+
+
+@keyframes blink {
+  50% {
+    opacity: 0.4;
+  }
+}
+
 
 

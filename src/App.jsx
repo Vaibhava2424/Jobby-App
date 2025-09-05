@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import LoginForm from './components/LoginForm'
+import SignUpForm from './components/SignupForm'
 import Jobs from './components/Jobs'
 import Home from './components/Home'
 import NotFound from './components/NotFound'
@@ -12,9 +13,9 @@ function App() {
   return (
     <BrowserRouter basename="/">
       <Routes>
-        <Route 
-          path="/login" 
-          element={<LoginForm />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/signup" element={<SignUpForm />} />   {/* 👈 signup route */}
+        
         <Route
           path="/"
           element={
@@ -24,7 +25,7 @@ function App() {
           }
         />
         <Route
-          path="/Jobs"
+          path="/jobs"
           element={
             <ProtectedRoute>
               <Jobs />

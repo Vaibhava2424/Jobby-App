@@ -9,7 +9,7 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('')
   const [showSubmitError, setShowSubmitError] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false) // 👈 new loading state
+  const [isSubmitting, setIsSubmitting] = useState(false) // loading state
   const navigate = useNavigate()
 
   const onChangeUsername = event => setUsername(event.target.value)
@@ -29,39 +29,34 @@ const SignUpForm = () => {
 
   const submitForm = async event => {
     event.preventDefault()
-    setIsSubmitting(true) // start loading
+    setIsSubmitting(true)
     setShowSubmitError(false)
 
     const userDetails = { username, email, password }
     const url = 'https://jobby-app-apis.onrender.com/signup'
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userDetails),
-    }
 
     try {
-      const response = await fetch(url, options)
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userDetails),
+      })
       const data = await response.json()
 
-      if (response.ok === true) {
+      if (response.ok) {
         onSubmitSuccess(data.jwt_token)
       } else {
         onSubmitFailure(data.error_msg || 'Sign up failed')
       }
     } catch (err) {
-      onSubmitFailure('Network error. Please try again.', err)
+      onSubmitFailure('Network error. Please try again.',err)
     } finally {
-      setIsSubmitting(false) // stop loading
+      setIsSubmitting(false)
     }
   }
 
   const jwtToken = Cookies.get('jwt_token')
-  if (jwtToken !== undefined) {
-    return <Navigate to="/" />
-  }
+  if (jwtToken) return <Navigate to="/" />
 
   return (
     <div className="login-form-container">
@@ -73,9 +68,7 @@ const SignUpForm = () => {
         />
 
         <div className="input-container">
-          <label className="input-label" htmlFor="username">
-            USERNAME
-          </label>
+          <label className="input-label" htmlFor="username">USERNAME</label>
           <input
             type="text"
             id="username"
@@ -88,9 +81,7 @@ const SignUpForm = () => {
         </div>
 
         <div className="input-container">
-          <label className="input-label" htmlFor="email">
-            EMAIL
-          </label>
+          <label className="input-label" htmlFor="email">EMAIL</label>
           <input
             type="email"
             id="email"
@@ -103,9 +94,7 @@ const SignUpForm = () => {
         </div>
 
         <div className="input-container">
-          <label className="input-label" htmlFor="password">
-            PASSWORD
-          </label>
+          <label className="input-label" htmlFor="password">PASSWORD</label>
           <input
             type="password"
             id="password"
@@ -118,11 +107,21 @@ const SignUpForm = () => {
         </div>
 
         <button type="submit" className="login-button" disabled={isSubmitting}>
-          {isSubmitting ? 'Signing up...' : 'Sign Up'} {/* 👈 dynamic button text */}
+          Sign Up
         </button>
 
         {showSubmitError && <p className="error-message">*{errorMsg}</p>}
       </form>
+
+      {/* Full-screen loader */}
+      {isSubmitting && (
+        <div className="loader-overlay">
+          <div className="loader-container">
+            <div className="spinner"></div>
+            <p>Signing up...</p>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

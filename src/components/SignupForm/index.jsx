@@ -17,7 +17,7 @@ const SignUpForm = () => {
   const onChangePassword = event => setPassword(event.target.value)
 
   const onSubmitSuccess = jwtToken => {
-    Cookies.set('jwt_token', jwtToken, { expires: 30 })
+    Cookies.set('jwt_taoken', jwtToken, { expires: 30 })
     localStorage.setItem('loggedInUser', username)
     localStorage.setItem('loggedInUserEmail', email)
     navigate('/', { replace: true })

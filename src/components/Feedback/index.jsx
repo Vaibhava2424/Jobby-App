@@ -7,34 +7,39 @@ const Feedback = () => {
   const [feedback, setFeedback] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
-  const handleSubmit = async event => {
-  event.preventDefault();
-  if (feedback.trim() === '') return;
+const handleSubmit = async event => {
+  event.preventDefault()
+  if (feedback.trim() === '') return
+
+  const username = localStorage.getItem('loggedInUser') || 'Anonymous'
+  const email = localStorage.getItem('email') || ''
 
   try {
-    const response = await fetch('https://jobby-app-apis.onrender.com/api/feedback', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: 'John Doe',
-        email: 'john@example.com',
-    message: feedback
-  })
-});
+    const response = await fetch(
+      'https://jobby-app-apis.onrender.com/api/feedback',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username,
+          email,
+          message: feedback,
+        }),
+      }
+    )
 
-
-    const data = await response.json();
+    const data = await response.json()
     if (response.ok) {
-      setSuccessMsg('Thank you for your feedback!');
-      setFeedback('');
-      setTimeout(() => setSuccessMsg(''), 3000);
+      setSuccessMsg('Thank you for your feedback!')
+      setFeedback('')
+      setTimeout(() => setSuccessMsg(''), 3000)
     } else {
-      console.error('Error:', data.error);
+      console.error('Error:', data.error)
     }
   } catch (err) {
-    console.error('Network error:', err);
+    console.error('Network error:', err)
   }
-};
+}
 
 
   return (

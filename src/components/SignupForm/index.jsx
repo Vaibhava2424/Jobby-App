@@ -19,6 +19,7 @@ const SignUpForm = () => {
   const onSubmitSuccess = jwtToken => {
     Cookies.set('jwt_token', jwtToken, { expires: 30 })
     localStorage.setItem('loggedInUser', username)
+    localStorage.setItem('loggedInUserEmail', email)
     navigate('/', { replace: true })
   }
 

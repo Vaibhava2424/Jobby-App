@@ -17,8 +17,8 @@ function Footer() {
         <div className="social-icons">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><FaLinkedinIn /></a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+          <a href="https://www.linkedin.com/in/vaibhava-raju-nadakuditi" target="_blank" rel="noopener noreferrer"><FaLinkedinIn /></a>
+          <a href="https://www.instagram.com/vaibhava.raj" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
         </div>
         <div className="footer-links">
           <a href="/about">About Us</a>

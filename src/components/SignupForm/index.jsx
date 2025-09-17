@@ -1,25 +1,25 @@
-import {useState} from 'react'
-import {useNavigate, Navigate} from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate, Navigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import './index.css'
-import Home from '../Home'
 
 const SignUpForm = () => {
   const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')   // 👈 new email state
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showSubmitError, setShowSubmitError] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false) // 👈 new loading state
   const navigate = useNavigate()
 
   const onChangeUsername = event => setUsername(event.target.value)
-  const onChangeEmail = event => setEmail(event.target.value)   // 👈 handler
+  const onChangeEmail = event => setEmail(event.target.value)
   const onChangePassword = event => setPassword(event.target.value)
 
   const onSubmitSuccess = jwtToken => {
-    Cookies.set('jwt_token', jwtToken, {expires: 30})
+    Cookies.set('jwt_token', jwtToken, { expires: 30 })
     localStorage.setItem('loggedInUser', username)
-    navigate('/', {replace: true})
+    navigate('/', { replace: true })
   }
 
   const onSubmitFailure = errorMsg => {
@@ -29,7 +29,10 @@ const SignUpForm = () => {
 
   const submitForm = async event => {
     event.preventDefault()
-    const userDetails = {username, email, password}   // 👈 include email
+    setIsSubmitting(true) // start loading
+    setShowSubmitError(false)
+
+    const userDetails = { username, email, password }
     const url = 'https://jobby-app-apis.onrender.com/signup'
     const options = {
       method: 'POST',
@@ -39,13 +42,19 @@ const SignUpForm = () => {
       body: JSON.stringify(userDetails),
     }
 
-    const response = await fetch(url, options)
-    const data = await response.json()
+    try {
+      const response = await fetch(url, options)
+      const data = await response.json()
 
-    if (response.ok === true) {
-      onSubmitSuccess(data.jwt_token)
-    } else {
-      onSubmitFailure(data.error_msg || 'Sign up failed')
+      if (response.ok === true) {
+        onSubmitSuccess(data.jwt_token)
+      } else {
+        onSubmitFailure(data.error_msg || 'Sign up failed')
+      }
+    } catch (err) {
+      onSubmitFailure('Network error. Please try again.', err)
+    } finally {
+      setIsSubmitting(false) // stop loading
     }
   }
 
@@ -62,7 +71,7 @@ const SignUpForm = () => {
           className="login-website-logo-desktop-img"
           alt="website logo"
         />
-        
+
         <div className="input-container">
           <label className="input-label" htmlFor="username">
             USERNAME
@@ -108,8 +117,8 @@ const SignUpForm = () => {
           />
         </div>
 
-        <button type="submit" className="login-button">
-          Sign Up
+        <button type="submit" className="login-button" disabled={isSubmitting}>
+          {isSubmitting ? 'Signing up...' : 'Sign Up'} {/* 👈 dynamic button text */}
         </button>
 
         {showSubmitError && <p className="error-message">*{errorMsg}</p>}

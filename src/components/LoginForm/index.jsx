@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Cookies from 'js-cookie' // ✅ Capital C
+import Cookies from 'js-cookie'
 import './index.css'
 
 const LoginForm = () => {
@@ -8,6 +8,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('')
   const [showSubmitError, setShowSubmitError] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false) // 👈 loading state
   const navigate = useNavigate()
 
   const onChangeUsername = event => setUsername(event.target.value)
@@ -15,6 +16,9 @@ const LoginForm = () => {
 
   const submitForm = async event => {
     event.preventDefault()
+    setIsSubmitting(true)
+    setShowSubmitError(false)
+
     const userDetails = { username, password }
 
     try {
@@ -27,11 +31,9 @@ const LoginForm = () => {
       const data = await response.json()
 
       if (response.ok) {
-        // Store JWT in cookies for ProtectedRoute
         Cookies.set('jwt_token', data.jwt_token, { expires: 7 })
-        // Optional: store username locally
         localStorage.setItem('loggedInUser', username)
-        navigate('/', { replace: true }) // navigate after login
+        navigate('/', { replace: true })
       } else {
         setShowSubmitError(true)
         setErrorMsg(data.error || 'Login failed')
@@ -40,6 +42,8 @@ const LoginForm = () => {
       setShowSubmitError(true)
       setErrorMsg('Network error. Try again.')
       console.error('Fetch error:', err)
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -51,6 +55,7 @@ const LoginForm = () => {
           className="login-website-logo-desktop-img"
           alt="website logo"
         />
+
         <div className="input-container">
           <label className="input-label" htmlFor="username">USERNAME</label>
           <input
@@ -60,8 +65,10 @@ const LoginForm = () => {
             value={username}
             onChange={onChangeUsername}
             placeholder="Username"
+            required
           />
         </div>
+
         <div className="input-container">
           <label className="input-label" htmlFor="password">PASSWORD</label>
           <input
@@ -71,18 +78,35 @@ const LoginForm = () => {
             value={password}
             onChange={onChangePassword}
             placeholder="Password"
+            required
           />
         </div>
-        <button type="submit" className="login-button">Login</button>
+
+        <button type="submit" className="login-button" disabled={isSubmitting}>
+          {isSubmitting ? 'Logging in...' : 'Login'}
+        </button>
+
         <button
           type="button"
           className="login-button"
           onClick={() => navigate('/signup')}
+          disabled={isSubmitting}
         >
           Sign Up
         </button>
+
         {showSubmitError && <p className="error-message">*{errorMsg}</p>}
       </form>
+
+      {/* Full-screen loader */}
+      {isSubmitting && (
+        <div className="loader-overlay">
+          <div className="loader-container">
+            <div className="spinner"></div>
+            <p>Logging in...</p>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

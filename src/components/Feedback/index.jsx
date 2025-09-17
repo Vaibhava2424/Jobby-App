@@ -16,11 +16,12 @@ const Feedback = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        username: 'John Doe', // you can make it dynamic
-        email: 'john@example.com', // optional
-        message: feedback
-      })
-    });
+        username: 'John Doe',
+        email: 'john@example.com',
+    message: feedback
+  })
+});
+
 
     const data = await response.json();
     if (response.ok) {

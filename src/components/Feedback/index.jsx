@@ -7,14 +7,34 @@ const Feedback = () => {
   const [feedback, setFeedback] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    if (feedback.trim() === '') return;
-    // Here you can send feedback to backend if needed
-    setSuccessMsg('Thank you for your feedback!');
-    setFeedback('');
-    setTimeout(() => setSuccessMsg(''), 3000); // hide message after 3s
-  };
+  const handleSubmit = async event => {
+  event.preventDefault();
+  if (feedback.trim() === '') return;
+
+  try {
+    const response = await fetch('http://localhost:3000/api/feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'John Doe', // you can make it dynamic
+        email: 'john@example.com', // optional
+        message: feedback
+      })
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      setSuccessMsg('Thank you for your feedback!');
+      setFeedback('');
+      setTimeout(() => setSuccessMsg(''), 3000);
+    } else {
+      console.error('Error:', data.error);
+    }
+  } catch (err) {
+    console.error('Network error:', err);
+  }
+};
+
 
   return (
     <>

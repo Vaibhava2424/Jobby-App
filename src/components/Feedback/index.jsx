@@ -12,7 +12,7 @@ const Feedback = () => {
   if (feedback.trim() === '') return;
 
   try {
-    const response = await fetch('https://jobby-app-chi-five.vercel.app/api/feedback', {
+    const response = await fetch('https://jobby-app-apis.onrender.com/api/feedback', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

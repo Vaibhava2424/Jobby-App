@@ -20,13 +20,7 @@ const Header = () => {
       <div className="nav-content">
         {/* Mobile View */}
         <div className="nav-bar-mobile-logo-container">
-          <Link to="/">
-            <img
-              className="website-logo"
-              src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-              alt="website logo"
-            />
-          </Link>
+          
 
           <div className="mobile-icons">
             <button className="hamburger-icon" onClick={toggleMenu}>

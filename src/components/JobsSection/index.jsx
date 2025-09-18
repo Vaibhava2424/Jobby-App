@@ -3,7 +3,6 @@ import JobsCard from '../JobsCard'
 import { Link } from 'react-router-dom'
 import './index.css'
 import JobCardSkeleton from '../JobCardSkeleton'
-
 const JobsSection = () => {
   const [jobsList, setJobsList] = useState([])
   const [isLoading, setIsLoading] = useState(true)

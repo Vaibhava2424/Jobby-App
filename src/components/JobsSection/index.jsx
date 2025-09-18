@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import JobsCard from '../JobsCard'
 import { Link } from 'react-router-dom'
 import './index.css'
+import JobCardSkeleton from '../JobCardSkeleton'
 
 const JobsSection = () => {
   const [jobsList, setJobsList] = useState([])
@@ -138,22 +139,25 @@ const JobsSection = () => {
   )
 
   return isLoading ? (
-    <div className="loading-container">Loading...</div>
-  ) : (
-    <>
-      <div className="search-bar-wrapper desktop-only">
-        <input
-          type="text"
-          placeholder="Search jobs by title"
-          value={searchInput}
-          onChange={e => setSearchInput(e.target.value)}
-          className="search-input"
-        />
-      </div>
-
-      {renderJobsList()}
-    </>
-  )
+  <ul className="products-list">
+    {[...Array(5)].map((_, index) => (
+      <JobCardSkeleton key={index} />
+    ))}
+  </ul>
+) : (
+  <>
+    <div className="search-bar-wrapper desktop-only">
+      <input
+        type="text"
+        placeholder="Search jobs by title"
+        value={searchInput}
+        onChange={e => setSearchInput(e.target.value)}
+        className="search-input"
+      />
+    </div>
+    {renderJobsList()}
+  </>
+)
 }
 
 export default JobsSection

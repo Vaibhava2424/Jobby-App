@@ -138,11 +138,27 @@ const JobsSection = () => {
   )
 
   return isLoading ? (
-  <ul className="products-list">
-    {[...Array(5)].map((_, index) => (
-      <JobCardSkeleton key={index} />
-    ))}
-  </ul>
+  <div className="jobs-section-main">
+    {/* Sidebar still visible */}
+    <div className="sidebar-column">
+      <div className="profile-sidebar">
+        <div className="profile-avatar">{firstLetter}</div>
+        <h2 className="profile-name">{username}</h2>
+        <p className="profile-bio">Lead Software Developer and AI-ML expert</p>
+      </div>
+      {/* Filters */}
+      <div className="filters-container">
+        {/* ... same filter code */}
+      </div>
+    </div>
+
+    {/* Skeletons go in place of jobs list */}
+    <ul className="products-list">
+      {[...Array(5)].map((_, index) => (
+        <JobCardSkeleton key={index} />
+      ))}
+    </ul>
+  </div>
 ) : (
   <>
     <div className="search-bar-wrapper desktop-only">
@@ -157,6 +173,7 @@ const JobsSection = () => {
     {renderJobsList()}
   </>
 )
+
 }
 
 export default JobsSection

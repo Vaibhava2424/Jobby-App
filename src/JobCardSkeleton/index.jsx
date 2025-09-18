@@ -1,5 +1,5 @@
 import React from "react"
-import "./JobCardSkeleton.css"
+import "./index.css"
 
 const JobCardSkeleton = () => {
   return (

@@ -1,21 +1,40 @@
+/* Remove pulse animation */
 .skeleton {
-  animation: pulse 1.5s infinite;
+  background: #e0e0e0;       /* solid gray */
+  border-radius: 4px;
 }
 
+/* Card wrapper with border */
+.skeleton-card {
+  width: 100%;
+  min-height: 160px;
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid #ccc;   /* light gray border */
+  border-radius: 8px;
+  background: #f5f5f5;      /* light gray background */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Logo placeholder */
 .skeleton-logo {
   width: 50px;
   height: 50px;
   border-radius: 6px;
-  background: #e0e0e0;
+  background: #d3d3d3;      /* slightly darker gray */
 }
 
+/* Group for text placeholders */
 .skeleton-text-group {
   margin-left: 10px;
 }
 
+/* Text placeholders */
 .skeleton-text {
   height: 14px;
-  background: #e0e0e0;
+  background: #d3d3d3;
   border-radius: 4px;
   margin: 6px 0;
 }
@@ -35,14 +54,9 @@
   height: 14px;
 }
 
+/* Details row (location, salary, etc.) */
 .skeleton-details {
   display: flex;
   justify-content: space-between;
   margin-top: 12px;
-}
-
-@keyframes pulse {
-  0% { background-color: #e0e0e0; }
-  50% { background-color: #d6d6d6; }
-  100% { background-color: #e0e0e0; }
 }

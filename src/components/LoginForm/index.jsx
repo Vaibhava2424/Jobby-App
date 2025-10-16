@@ -50,11 +50,7 @@ const LoginForm = () => {
   return (
     <div className="login-form-container">
       <form className="form-container" onSubmit={submitForm}>
-        <img
-          src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-          className="login-website-logo-desktop-img"
-          alt="website logo"
-        />
+        
 
         <div className="input-container">
           <label className="input-label" htmlFor="username">USERNAME</label>

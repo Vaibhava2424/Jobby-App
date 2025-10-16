@@ -17,7 +17,7 @@ const SignUpForm = () => {
   const onChangePassword = event => setPassword(event.target.value)
 
   const onSubmitSuccess = jwtToken => {
-    Cookies.set('jwt_taoken', jwtToken, { expires: 30 })
+    Cookies.set('jwt_token', jwtToken, { expires: 30 })
     localStorage.setItem('loggedInUser', username)
     localStorage.setItem('loggedInUserEmail', email)
     navigate('/', { replace: true })
@@ -45,9 +45,9 @@ const SignUpForm = () => {
       const data = await response.json()
 
       if (response.ok) {
-        onSubmitSuccess(data.jwt_token)
+        onSubmitSuccess(data.token)
       } else {
-        onSubmitFailure(data.error_msg || 'Sign up failed')
+        onSubmitFailure(data.error || 'Sign up failed')
       }
     } catch (err) {
       onSubmitFailure('Network error. Please try again.',err)
